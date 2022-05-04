@@ -26,31 +26,16 @@
   },
   "dwarves": [
     {
+      "Monday": true,
       "id": 1
     },
     {
-      "Wednesday": true,
+      "Tuesday": true,
       "id": 2
     },
     {
-      "Friday": true,
+      "Wednesday": true,
       "id": 3
-    },
-    {
-      "Saturday": true,
-      "id": 4
-    },
-    {
-      "Sunday": true,
-      "id": 5
-    },
-    {
-      "Monday": true,
-      "id": 6
-    },
-    {
-      "Tuesday": true,
-      "id": 7
     }
   ]
 }

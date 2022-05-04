@@ -5,11 +5,12 @@ import time
 from led_control import LEDS
 
 from json_helper import UPDATE_JSON
+leds = LEDS()
 
 def set_led(day):
-    leds = LEDS()
     leds.set_day(day)
-    # print(f"this is from set_led {day}")
+    # pass
+    print(f"this is from set_led {day}")
 
 def init():
 
@@ -24,7 +25,7 @@ def init():
                         set_led(day)
                         # print(f"this is from the check_json {day}, {i[day]}")
                 # print(updated_json)
-        time.sleep(5)
+        time.sleep(1)
 
 init()   
 

@@ -1,0 +1,56 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "Tuesday": true,
+      "id": 2
+    },
+    {
+      "Tuesday": true,
+      "id": 3
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "dwarves": [
+    {
+      "id": 1
+    },
+    {
+      "Wednesday": true,
+      "id": 2
+    },
+    {
+      "Friday": true,
+      "id": 3
+    },
+    {
+      "Saturday": true,
+      "id": 4
+    },
+    {
+      "Sunday": true,
+      "id": 5
+    },
+    {
+      "Monday": true,
+      "id": 6
+    },
+    {
+      "Tuesday": true,
+      "id": 7
+    }
+  ]
+}

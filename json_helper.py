@@ -4,6 +4,7 @@ import time
 
 class UPDATE_JSON:
     def __init__(self, old_json = {}, current_json = {}):
+        print("initializing json helper")
         self.old_json = old_json
         self.current_json = current_json
 
@@ -11,6 +12,7 @@ class UPDATE_JSON:
         with open('db.json', 'r') as seven_dwarves_json:
             self.current_json = json.load(seven_dwarves_json)
             if self.current_json != self.old_json:
+                print("new JSON")
                 self.old_json = self.current_json
                 return self.current_json
             else:

@@ -44,7 +44,9 @@ class Leds:
     # True to invert the signal (when using NPN transistor level shift)
     led_invert = False
     led_channel = 0
-    led_strip = ws.WS2811_STRIP_GBR
+    led_strip = ws.SK6812_STRIP_RGBW
+
+    pulse_on = False
 
     def __init__(self, led_brightness=255, led_brightness_low=40):
         ## This is a Dunder Methods
@@ -52,14 +54,14 @@ class Leds:
         self.led_brightness = led_brightness
         self.led_brightness_low = led_brightness_low
         # led_array is the new 'strip'
-        print(self.led_count)
-        print(self.led_pin)
-        print(self.led_freq_hz)
-        print(self.led_dma)
-        print(self.led_invert)
-        print(self.led_brightness)
-        print(self.led_channel)
-        print(self.led_strip)
+        # print(self.led_count)
+        # print(self.led_pin)
+        # print(self.led_freq_hz)
+        # print(self.led_dma)
+        # print(self.led_invert)
+        # print(self.led_brightness)
+        # print(self.led_channel)
+        # print(self.led_strip)
         self.led_array = Adafruit_NeoPixel(
             self.led_count,
             self.led_pin,
@@ -74,7 +76,7 @@ class Leds:
         print("initializing led array")
         self.led_array.begin()
 
-        self.clear_leds(self.led_count)
+        self.clear_leds()
 
     # ## This is a Dunder Methods
     # def __str__(self) -> str:
@@ -82,55 +84,81 @@ class Leds:
 
     # # Create NeoPixel object with appropriate configuration.
 
-    def clear_leds(self, led_count):
+    def clear_leds(self):
         strip = self.led_array
-        for i in range(0, led_count, 1):
+        self.pulse_on = False
+        for i in range(0, self.led_count, 1):
             strip.setPixelColor(i, 0)
         strip.show()
 
-    def set_day(self, day):
+    def set_dwarves(self, day):
         strip = self.led_array
         strip.setBrightness(255)
+        # print(
+        #     "setting leds for set_day"
+        # )
         if day == "monday":
             strip.setPixelColor(MONDAY, MONDAY_COLOR)
-            print("ITS MONDAY")
+            print("MONDAY COMPLETE")
         if day == "tuesday":
             strip.setPixelColor(TUESDAY, TUESDAY_COLOR)
-            print("ITS TUESDAY")
+            print("TUESDAY COMPLETE")
         if day == "wednesday":
             strip.setPixelColor(WEDNESDAY, WEDNESDAY_COLOR)
-            print("ITS WEDNESDAY")
+            print("WEDNESDAY COMPLETE")
         if day == "thursday":
             strip.setPixelColor(THURSDAY, THURSDAY_COLOR)
-            print("ITS THURSDAY")
+            print("THURSDAY COMPLETE")
         if day == "friday":
             strip.setPixelColor(FRIDAY, FRIDAY_COLOR)
-            print("ITS FRIDAY")
+            print("FRIDAY COMPLETE")
         if day == "saturday":
             strip.setPixelColor(SATURDAY, SATURDAY_COLOR)
-            print("ITS SATURDAY")
+            print("SATURDAY COMPLETE")
         if day == "sunday":
             strip.setPixelColor(SUNDAY, SUNDAY_COLOR)
-            print("ITS SUNDAY")
+            print("SUNDAY COMPLETE")
         strip.show()
         # else:
         #    print(f"NOT ANY DAY ITS {str(day)}")
 
     def pulse(self):
+        print(f"pulse_on is {self.pulse_on}")
+        if self.pulse_on:
+            print("pulse thread already running")
+        else:
+            p = threading.Thread(target=self.pulse_thread, args=())
+            self.pulse_on = True
+            try:
+                p.start()
+            except Exception as err:
+                print(err)
+        pass
+    
+    def pulse_thread(self):
+        print("starting pulse thread")
         strip = self.led_array
         steps = 40
-        while True:
+        self.pulse_on = True
+        while self.pulse_on:
             for k in range(1, steps):
                 pulse_value = round(
                     ((self.led_brightness * (steps - k)) + (0 * k)) / steps
                 )
                 strip.setBrightness(pulse_value)
-                strip.show()
-                time.sleep(0.03)
+                self.show_pulse()
             for k in range(1, steps):
                 pulse_value = round(
                     ((0 * (steps - k)) + (self.led_brightness * k)) / steps
                 )
                 strip.setBrightness(pulse_value)
-                strip.show()
-                time.sleep(0.03)
+                self.show_pulse()
+        strip.setBrightness(self.led_brightness)
+        strip.show()
+    
+    def show_pulse(self):
+        strip = self.led_array
+        # print("showing pulse")
+        if self.pulse_on:
+            strip.show()
+            time.sleep(0.03)

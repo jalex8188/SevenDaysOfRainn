@@ -27,42 +27,40 @@
   "dwarves": [
     {
       "id": 1,
-      "Monday": false
+      "monday": true
     },
     {
-      "Tuesday": false,
+      "tuesday": false,
       "id": 2
     },
     {
-      "Wednesday": false,
+      "wednesday": true,
       "id": 3
     },
     {
-      "Thursday": false,
+      "thursday": true,
       "id": 4
     },
     {
-      "Friday": false,
+      "friday": false,
       "id": 5
     },
     {
-      "Saturday": false,
+      "saturday": false,
       "id": 6
     },
     {
-      "Sunday": false,
+      "sunday": false,
       "id": 7
     }
   ],
   "gameState": [
     {
-      "currentDay": "wednesday",
-      "id": 1
+      "id": 1,
+      "currentDay": "friday"
     },
     {
-      "gameState": "start",
-      "gameState2": "active",
-      "gameState3": "end",
+      "gameState": "end",
       "id": 2
     }
   ]

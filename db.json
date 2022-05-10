@@ -53,5 +53,17 @@
       "Sunday": false,
       "id": 7
     }
+  ],
+  "gameState": [
+    {
+      "currentDay": "wednesday",
+      "id": 1
+    },
+    {
+      "gameState": "start",
+      "gameState2": "active",
+      "gameState3": "end",
+      "id": 2
+    }
   ]
 }

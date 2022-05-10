@@ -7,6 +7,8 @@ from printer_control import Printer
 
 from json_helper import UPDATE_JSON
 
+leds = LEDS()
+
 leds = Leds()
 printer = Printer()
 

@@ -56,11 +56,11 @@
   ],
   "gameState": [
     {
-      "id": 1,
-      "currentDay": "friday"
+      "currentDay": "wednesday",
+      "id": 1
     },
     {
-      "gameState": "end",
+      "gameState": "start",
       "id": 2
     }
   ]

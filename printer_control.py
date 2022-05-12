@@ -1,9 +1,8 @@
 import RPi.GPIO as GPIO
 import os
+from pathlib import Path
 
 printer = True
-
-printCmd = "lp MemoryTraderImg-01.jpg"
 
 dwarves_imgs_dict = {
     "monday": "monday.jpg",
@@ -18,13 +17,15 @@ dwarves_imgs_dict = {
 
 class Printer:
     def __init__(self):
-        self.dwarves_imgs = dwarves_imgs_dict
+        self.filepath = Path().absolute()
+        print(f"filepath: {self.filepath}")
+        print(printCmd)
 
     def print_dwarf(self, day):
         print("inside printer_control.py")
         try:
             dwarf_image = self.dwarves_imgs[day]
-            printCmd = "lp " + str(dwarf_image)
+            printCmd = (f"lp {self.filepath}/{str(dwarf_image)}")
             print(printCmd)
             # os.system(printCmd)
         except Exception as err:

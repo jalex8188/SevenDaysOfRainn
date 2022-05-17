@@ -9,22 +9,22 @@ from rpi_ws281x import Color
 from rpi_ws281x import Adafruit_NeoPixel
 from rpi_ws281x import *
 
-LED_BRIGHTNESS = 255
+LED_BRIGHTNESS = 40
 
-MONDAY = 0
-MONDAY_COLOR = rpi_ws281x.Color(LED_BRIGHTNESS, LED_BRIGHTNESS, LED_BRIGHTNESS)  # white
-TUESDAY = 1
-TUESDAY_COLOR = rpi_ws281x.Color(4, LED_BRIGHTNESS, 4)  # red coral
-WEDNESDAY = 2
-WEDNESDAY_COLOR = rpi_ws281x.Color(0, 0, LED_BRIGHTNESS)  # green
-THURSDAY = 3
-THURSDAY_COLOR = rpi_ws281x.Color(0, LED_BRIGHTNESS, LED_BRIGHTNESS)  # yellow
-FRIDAY = 4
-FRIDAY_COLOR = rpi_ws281x.Color(1, LED_BRIGHTNESS, 1)  # pink
-SATURDAY = 5
-SATURDAY_COLOR = rpi_ws281x.Color(LED_BRIGHTNESS, 0, 0)  # blue
-SUNDAY = 6
+SUNDAY = 0
 SUNDAY_COLOR = rpi_ws281x.Color(0, LED_BRIGHTNESS, 0)  # red
+MONDAY = 1
+MONDAY_COLOR = rpi_ws281x.Color(LED_BRIGHTNESS, LED_BRIGHTNESS, LED_BRIGHTNESS)  # white
+TUESDAY = 2
+TUESDAY_COLOR = rpi_ws281x.Color(4, LED_BRIGHTNESS, 4)  # red coral
+WEDNESDAY = 3
+WEDNESDAY_COLOR = rpi_ws281x.Color(0, 0, LED_BRIGHTNESS)  # green
+THURSDAY = 4
+THURSDAY_COLOR = rpi_ws281x.Color(0, LED_BRIGHTNESS, LED_BRIGHTNESS)  # yellow
+FRIDAY = 5
+FRIDAY_COLOR = rpi_ws281x.Color(1, LED_BRIGHTNESS, 1)  # pink
+SATURDAY = 6
+SATURDAY_COLOR = rpi_ws281x.Color(LED_BRIGHTNESS, 0, 0)  # blue
 
 
 class Leds:
@@ -44,8 +44,8 @@ class Leds:
     # True to invert the signal (when using NPN transistor level shift)
     led_invert = False
     led_channel = 0
-    led_strip = ws.SK6812_STRIP_RGBW
-
+    # led_strip = ws.SK6812_STRIP_RGBW
+    led_strip = ws.WS2811_STRIP_GBR
     pulse_on = False
 
     def __init__(self, led_brightness=255, led_brightness_low=40):
@@ -75,7 +75,7 @@ class Leds:
         # # Intialize the library (must be called once before other functions).
         print("initializing led array")
         self.led_array.begin()
-
+        self.start_sequence()
         self.clear_leds()
 
     # ## This is a Dunder Methods
@@ -99,25 +99,25 @@ class Leds:
         # )
         if day == "monday":
             strip.setPixelColor(MONDAY, MONDAY_COLOR)
-            print("MONDAY COMPLETE")
+            print("MONDAY SET")
         if day == "tuesday":
             strip.setPixelColor(TUESDAY, TUESDAY_COLOR)
-            print("TUESDAY COMPLETE")
+            print("TUESDAY SET")
         if day == "wednesday":
             strip.setPixelColor(WEDNESDAY, WEDNESDAY_COLOR)
-            print("WEDNESDAY COMPLETE")
+            print("WEDNESDAY SET")
         if day == "thursday":
             strip.setPixelColor(THURSDAY, THURSDAY_COLOR)
-            print("THURSDAY COMPLETE")
+            print("THURSDAY SET")
         if day == "friday":
             strip.setPixelColor(FRIDAY, FRIDAY_COLOR)
-            print("FRIDAY COMPLETE")
+            print("FRIDAY SET")
         if day == "saturday":
             strip.setPixelColor(SATURDAY, SATURDAY_COLOR)
-            print("SATURDAY COMPLETE")
+            print("SATURDAY SET")
         if day == "sunday":
             strip.setPixelColor(SUNDAY, SUNDAY_COLOR)
-            print("SUNDAY COMPLETE")
+            print("SUNDAY SET")
         strip.show()
         # else:
         #    print(f"NOT ANY DAY ITS {str(day)}")
@@ -135,24 +135,24 @@ class Leds:
                 print(err)
         pass
     
-    def pulse_thread(self):
+    def pulse_thread(self, steps = 40):
         print("starting pulse thread")
         strip = self.led_array
-        steps = 40
         self.pulse_on = True
         while self.pulse_on:
-            for k in range(1, steps):
-                pulse_value = round(
-                    ((self.led_brightness * (steps - k)) + (0 * k)) / steps
-                )
-                strip.setBrightness(pulse_value)
-                self.show_pulse()
             for k in range(1, steps):
                 pulse_value = round(
                     ((0 * (steps - k)) + (self.led_brightness * k)) / steps
                 )
                 strip.setBrightness(pulse_value)
                 self.show_pulse()
+            if self.pulse_on:
+                for k in range(1, steps):
+                    pulse_value = round(
+                        ((self.led_brightness * (steps - k)) + (0 * k)) / steps
+                    )
+                    strip.setBrightness(pulse_value)
+                    self.show_pulse()
         strip.setBrightness(self.led_brightness)
         strip.show()
     
@@ -162,3 +162,24 @@ class Leds:
         if self.pulse_on:
             strip.show()
             time.sleep(0.03)
+    
+    def start_sequence(self):
+        strip = self.led_array
+        day_list = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"]
+        index = 0
+        strip.setPixelColor(0, rpi_ws281x.Color(40,40,40) )
+        strip.show()
+        time.sleep(2)
+        for i in day_list:
+            print(i)
+            strip.setPixelColor(index, rpi_ws281x.Color(40,40,40) )
+            strip.show()
+            # self.set_dwarves(i)
+            time.sleep(0.05)
+            # self.clear_leds()
+            # time.sleep(0.1)
+            index+=1
+        time.sleep(1)
+        self.clear_leds()
+        time.sleep(2)
+        strip.setBrightness(self.led_brightness)

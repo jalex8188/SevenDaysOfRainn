@@ -2,7 +2,7 @@ import json
 import time
 
 
-class UPDATE_JSON:
+class Json_helper:
     def __init__(self, old_json = {}, current_json = {}):
         print("initializing json helper")
         self.old_json = old_json
@@ -21,7 +21,14 @@ class UPDATE_JSON:
                     return(None)
             except Exception as err:
                 print(f"Update Json error: {err}")
-        
+    
+    def update_json(self, updated_json):
+        with open('db.json', 'w') as seven_dwarves_json:
+            try:
+                print("UPDATING JSON")
+                json.dump(updated_json, seven_dwarves_json, indent=3)
+            except Exception as err:
+                print(f"problem with update_json in json_helper: {err}")
 
         # seven_dwarves = self.current_json
         # for i in seven_dwarves['dwarves']:

@@ -1,67 +1,71 @@
 {
-  "posts": [
-    {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    },
-    {
-      "Tuesday": true,
-      "id": 2
-    },
-    {
-      "Tuesday": true,
-      "id": 3
-    }
-  ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
-  "profile": {
-    "name": "typicode"
-  },
-  "dwarves": [
-    {
-      "id": 1,
-      "monday": true
-    },
-    {
-      "tuesday": true,
-      "id": 2
-    },
-    {
-      "wednesday": true,
-      "id": 3
-    },
-    {
-      "thursday": true,
-      "id": 4
-    },
-    {
-      "friday": true,
-      "id": 5
-    },
-    {
-      "saturday": false,
-      "id": 6
-    },
-    {
-      "sunday": false,
-      "id": 7
-    }
-  ],
-  "gameState": [
-    {
-      "currentDay": "wednesday",
-      "id": 1
-    },
-    {
-      "gameState": "end",
-      "id": 2
-    }
-  ]
+   "posts": [
+      {
+         "id": 1,
+         "title": "json-server",
+         "author": "typicode"
+      },
+      {
+         "Tuesday": true,
+         "id": 2
+      },
+      {
+         "Tuesday": true,
+         "id": 3
+      }
+   ],
+   "comments": [
+      {
+         "id": 1,
+         "body": "some comment",
+         "postId": 1
+      }
+   ],
+   "profile": {
+      "name": "typicode"
+   },
+   "dwarves": [
+      {
+         "id": 1,
+         "monday": true
+      },
+      {
+         "tuesday": true,
+         "id": 2
+      },
+      {
+         "wednesday": true,
+         "id": 3
+      },
+      {
+         "thursday": true,
+         "id": 4
+      },
+      {
+         "friday": true,
+         "id": 5
+      },
+      {
+         "saturday": false,
+         "id": 6
+      },
+      {
+         "sunday": false,
+         "id": 7
+      }
+   ],
+   "gameState": [
+      {
+         "currentDay": "wednesday",
+         "id": 1
+      },
+      {
+         "gameState": "end",
+         "id": 2
+      },
+      {
+         "printerState": "none",
+         "id": 3
+      }
+   ]
 }

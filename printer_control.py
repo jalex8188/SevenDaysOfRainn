@@ -5,13 +5,14 @@ from pathlib import Path
 printer = True
 
 dwarves_imgs_dict = {
-    "monday": "monday.jpg",
-    "tuesday": "tuesday.jpg",
-    "wednesday": "wednesday.jpg",
-    "thursday": "thursday.jpg",
-    "friday": "friday.jpg",
-    "saturday": "saturday.jpg",
-    "sunday": "sunday.jpg",
+    "one": "one.png",
+    "two": "two.png",
+    "three": "three.png",
+    "four": "four.png",
+    "five": "five.png",
+    "six": "six.png",
+    "seven": "seven.png",
+    "eight": "eight.png"
 }
 
 
@@ -21,14 +22,13 @@ class Printer:
         print(f"filepath: {self.filepath}")
         path = self.filepath
         print_path = (f"lp {path}")
-        print(print_path)
+        print(F"PRINTER PATH:{print_path}")
 
-    def print_dwarf(self, day):
+    def print_level(self, level):
         print("inside printer_control.py")
         try:
-            dwarf_image = self.dwarves_imgs[day]
-            printCmd = (f"lp {self.filepath}/{str(dwarf_image)}/{day}.jpg")
+            printCmd = (f"lp {self.filepath}/images/{level}.png")
             print(printCmd)
-            # os.system(printCmd)
+            os.system(printCmd)
         except Exception as err:
             print("error with printer " + str(err))

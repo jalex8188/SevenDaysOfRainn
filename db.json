@@ -30,7 +30,7 @@
       "monday": true
     },
     {
-      "tuesday": false,
+      "tuesday": true,
       "id": 2
     },
     {
@@ -42,7 +42,7 @@
       "id": 4
     },
     {
-      "friday": false,
+      "friday": true,
       "id": 5
     },
     {
@@ -60,7 +60,7 @@
       "id": 1
     },
     {
-      "gameState": "start",
+      "gameState": "end",
       "id": 2
     }
   ]

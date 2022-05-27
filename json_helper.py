@@ -10,14 +10,18 @@ class UPDATE_JSON:
 
     def check_json(self):
         with open('db.json', 'r') as seven_dwarves_json:
-            self.current_json = json.load(seven_dwarves_json)
-            if self.current_json != self.old_json:
-                print("new JSON")
-                self.old_json = self.current_json
-                return self.current_json
-            else:
-                return(None)
-
+            try:
+                self.current_json = json.load(seven_dwarves_json)
+                time.sleep(.1)
+                if self.current_json != self.old_json:
+                    print("new JSON")
+                    self.old_json = self.current_json
+                    return self.current_json
+                else:
+                    return(None)
+            except Exception as err:
+                print(f"Update Json error: {err}")
+        
 
         # seven_dwarves = self.current_json
         # for i in seven_dwarves['dwarves']:

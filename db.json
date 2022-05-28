@@ -26,8 +26,8 @@
    },
    "dwarves": [
       {
-         "id": 1,
-         "monday": true
+         "monday": true,
+         "id": 1
       },
       {
          "tuesday": true,

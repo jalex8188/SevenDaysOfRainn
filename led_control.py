@@ -48,6 +48,8 @@ class Leds:
     led_strip = ws.WS2811_STRIP_GBR
     pulse_on = False
 
+    steps = 40
+
     def __init__(self, led_brightness=255, led_brightness_low=40):
         ## This is a Dunder Methods
         ## This is also a Constructor (When you first start a class, these defaults must be set)
@@ -97,49 +99,52 @@ class Leds:
         # print(
         #     "setting leds for set_day"
         # )
-        if day == "monday":
+        print(f"lowercase day {day.lower()}")
+        if day.lower() == "monday":
             strip.setPixelColor(MONDAY, MONDAY_COLOR)
             print("MONDAY SET")
-        if day == "tuesday":
+        if day.lower() == "tuesday":
             strip.setPixelColor(TUESDAY, TUESDAY_COLOR)
             print("TUESDAY SET")
-        if day == "wednesday":
+        if day.lower() == "wednesday":
             strip.setPixelColor(WEDNESDAY, WEDNESDAY_COLOR)
             print("WEDNESDAY SET")
-        if day == "thursday":
+        if day.lower() == "thursday":
             strip.setPixelColor(THURSDAY, THURSDAY_COLOR)
             print("THURSDAY SET")
-        if day == "friday":
+        if day.lower() == "friday":
             strip.setPixelColor(FRIDAY, FRIDAY_COLOR)
             print("FRIDAY SET")
-        if day == "saturday":
+        if day.lower() == "saturday":
             strip.setPixelColor(SATURDAY, SATURDAY_COLOR)
             print("SATURDAY SET")
-        if day == "sunday":
+        if day.lower() == "sunday":
             strip.setPixelColor(SUNDAY, SUNDAY_COLOR)
             print("SUNDAY SET")
         strip.show()
         # else:
         #    print(f"NOT ANY DAY ITS {str(day)}")
 
-    def pulse(self):
+    def pulse(self, steps = 40):
         print(f"pulse_on is {self.pulse_on}")
         if self.pulse_on:
             print("pulse thread already running")
         else:
             p = threading.Thread(target=self.pulse_thread, args=())
             self.pulse_on = True
+            print(f"pulse_on is {self.pulse_on}")
             try:
                 p.start()
             except Exception as err:
                 print(err)
         pass
     
-    def pulse_thread(self, steps = 40):
+    def pulse_thread(self):
         print("starting pulse thread")
         strip = self.led_array
         self.pulse_on = True
         while self.pulse_on:
+            steps = self.steps
             for k in range(1, steps):
                 pulse_value = round(
                     ((0 * (steps - k)) + (self.led_brightness * k)) / steps

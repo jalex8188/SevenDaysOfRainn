@@ -26,9 +26,10 @@ class Printer:
 
     def print_level(self, level):
         print("inside printer_control.py")
+        #/home/pi/SevenDaysOfRainn/images/eight.png
         try:
             printCmd = (f"lp {self.filepath}/images/{level}.png")
             print(printCmd)
-            os.system(printCmd)
+            # os.system(printCmd)
         except Exception as err:
             print("error with printer " + str(err))

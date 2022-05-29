@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PUT Request</title>
+</head>
+
+<body>
+
+
+    <script>
+        const myGameObject = {
+            "id": 2,
+            "gameState": "start"
+        };
+
+
+        const putGameData = async () => {
+            const response = await fetch('http://192.168.0.28:3000/gameState/2', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(myGameObject)
+            });
+
+            const data = await response.json();
+
+            // now do whatever you want with the data  
+            console.log(data);
+        };
+        putGameData();
+
+
+        const myDayObject = {
+            "id": 1,
+            "currentDay": Harlowe.variable('$Today')
+        };
+
+
+        const putDayData = async () => {
+            const response = await fetch('http://192.168.0.28:3000/gameState/1', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(myDayObject)
+            });
+
+            const data = await response.json();
+
+            // now do whatever you want with the data  
+            console.log(data);
+        };
+        putDayData();
+    </script>
+</body>
+
+</html>

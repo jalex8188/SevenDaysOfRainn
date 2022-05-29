@@ -7,6 +7,11 @@ from printer_control import Printer
 
 from json_helper import Json_helper
 
+
+START_PULSE_STEPS = 80
+MOVE_PULSE_STEPS = 80
+QUESTION_PULSE_STEPS = 80
+ROOM_PULSE_STEPS = 80
 leds = Leds()
 printer = Printer()
 
@@ -21,7 +26,7 @@ def set_all_dwarves(seven_dwarves):
                     leds.set_dwarves(day)
                 # print_level(day)
     time.sleep(1)
-    leds.pulse()
+    # leds.pulse()
 
 
 def set_led(day):
@@ -40,6 +45,10 @@ def init():
 
     json_helper = Json_helper()
     try:
+        os.system("json-server -w db.json -H 192.168.0.28 >> /var/log/json-server.log 2>&1 &")
+    except Exception as err:
+        print(f"problem starting json-server:{err}")
+    try:
         while True:
             updated_json = json_helper.check_json()
             try:
@@ -57,22 +66,29 @@ def init():
 
                         if game_state == "start":
                             print("inside start")
+                            leds.steps = 80
                             leds.clear_leds()
                             leds.set_dwarves(current_day)
                             leds.pulse()
-                        if game_state == "active":
-                            print("inside active")
+                        if game_state == "movement":
+                            leds.steps = 50
+                        if game_state == "question":
+                            leds.steps = 10
+                        if game_state == "room":
                             leds.clear_leds()
                             leds.set_dwarves(current_day)
-                        if game_state == "end":
-                            print("game state is end")
+                        if game_state == "seven_room":
                             leds.clear_leds()
+                            leds.steps = 80
                             set_all_dwarves(seven_dwarves)
-                        
+                        if game_state == "end":
+                            leds.clear_leds()
+
                         if printer_state != "none":
                             try:
                                 # printer.print_level(printer_state)
                                 seven_dwarves["gameState"][2]["printerState"] = "none"
+                                seven_dwarves["gameState"][3]["alreadyPrinted"].append(printer_state)
                                 json_helper.update_json(seven_dwarves)
                                 print(f"I'm printing {printer_state}")
                                 printer.print_level(printer_state)

@@ -1,78 +1,67 @@
 {
-  "posts": [
-    {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
-  "profile": {
-    "name": "typicode"
-  },
-  "dwarves": [
-    {
-      "monday": true,
-      "id": 1
-    },
-    {
-      "tuesday": true,
-      "id": 2
-    },
-    {
-      "wednesday": true,
-      "id": 3
-    },
-    {
-      "thursday": true,
-      "id": 4
-    },
-    {
-      "friday": true,
-      "id": 5
-    },
-    {
-      "saturday": false,
-      "id": 6
-    },
-    {
-      "sunday": false,
-      "id": 7
-    }
-  ],
-  "gameState": [
-    {
-      "id": 1,
-      "currentDay": "Monday"
-    },
-    {
-      "id": 2,
-      "gameState": "movement"
-    },
-    {
-      "id": 3,
-      "printerState": "none"
-    },
-    {
-      "id": 4,
-      "alreadyPrinted": [
-        "monday",
-        "tuesday",
-        "Monday",
-        "Monday",
-        "Monday",
-        "Monday",
-        "Monday",
-        "Monday",
-        "Monday",
-        "Monday"
-      ]
-    }
-  ]
+   "posts": [
+      {
+         "id": 1,
+         "title": "json-server",
+         "author": "typicode"
+      }
+   ],
+   "comments": [
+      {
+         "id": 1,
+         "body": "some comment",
+         "postId": 1
+      }
+   ],
+   "profile": {
+      "name": "typicode"
+   },
+   "dwarves": [
+      {
+         "monday": false,
+         "id": 1
+      },
+      {
+         "tuesday": false,
+         "id": 2
+      },
+      {
+         "wednesday": false,
+         "id": 3
+      },
+      {
+         "thursday": false,
+         "id": 4
+      },
+      {
+         "friday": false,
+         "id": 5
+      },
+      {
+         "saturday": false,
+         "id": 6
+      },
+      {
+         "sunday": false,
+         "id": 7
+      }
+   ],
+   "gameState": [
+      {
+         "id": 1,
+         "currentDay": "Tuesday"
+      },
+      {
+         "id": 2,
+         "gameState": "none"
+      },
+      {
+         "id": 3,
+         "printerState": "none"
+      },
+      {
+         "id": 4,
+         "alreadyPrinted": []
+      }
+   ]
 }

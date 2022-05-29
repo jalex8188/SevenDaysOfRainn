@@ -11,20 +11,25 @@ from rpi_ws281x import *
 
 LED_BRIGHTNESS = 40
 
+zero = 0
+one = 1
+four = 4
+
 SUNDAY = 0
-SUNDAY_COLOR = rpi_ws281x.Color(0, LED_BRIGHTNESS, 0)  # red
+SUNDAY_COLOR = rpi_ws281x.Color(zero, LED_BRIGHTNESS, zero)  # red
 MONDAY = 1
 MONDAY_COLOR = rpi_ws281x.Color(LED_BRIGHTNESS, LED_BRIGHTNESS, LED_BRIGHTNESS)  # white
 TUESDAY = 2
-TUESDAY_COLOR = rpi_ws281x.Color(4, LED_BRIGHTNESS, 4)  # red coral
+TUESDAY_COLOR = rpi_ws281x.Color(four, LED_BRIGHTNESS, four)  # red coral
 WEDNESDAY = 3
-WEDNESDAY_COLOR = rpi_ws281x.Color(0, 0, LED_BRIGHTNESS)  # green
+WEDNESDAY_COLOR = rpi_ws281x.Color(zero, zero, LED_BRIGHTNESS)  # green
 THURSDAY = 4
-THURSDAY_COLOR = rpi_ws281x.Color(0, LED_BRIGHTNESS, LED_BRIGHTNESS)  # yellow
+THURSDAY_COLOR = rpi_ws281x.Color(zero, LED_BRIGHTNESS, LED_BRIGHTNESS)  # yellow
 FRIDAY = 5
-FRIDAY_COLOR = rpi_ws281x.Color(1, LED_BRIGHTNESS, 1)  # pink
+FRIDAY_COLOR = rpi_ws281x.Color(one, LED_BRIGHTNESS, one)  # pink
 SATURDAY = 6
-SATURDAY_COLOR = rpi_ws281x.Color(LED_BRIGHTNESS, 0, 0)  # blue
+SATURDAY_COLOR = rpi_ws281x.Color(LED_BRIGHTNESS, zero, zero)  # blue
+
 
 
 class Leds:
@@ -49,6 +54,10 @@ class Leds:
     pulse_on = False
 
     steps = 40
+
+    zero = zero
+    one = one
+    four = four
 
     def __init__(self, led_brightness=255, led_brightness_low=40):
         ## This is a Dunder Methods
@@ -78,7 +87,9 @@ class Leds:
         print("initializing led array")
         self.led_array.begin()
         self.start_sequence()
+
         self.clear_leds()
+
 
     # ## This is a Dunder Methods
     # def __str__(self) -> str:
@@ -86,12 +97,60 @@ class Leds:
 
     # # Create NeoPixel object with appropriate configuration.
 
+    def update_colors(self):
+        print(self.zero, LED_BRIGHTNESS, self.zero)
+        self.SUNDAY_COLOR = rpi_ws281x.Color(self.zero, LED_BRIGHTNESS, self.zero)  # red
+        self.MONDAY_COLOR = rpi_ws281x.Color(LED_BRIGHTNESS, LED_BRIGHTNESS, LED_BRIGHTNESS)  # white
+        self.TUESDAY_COLOR = rpi_ws281x.Color(self.four, LED_BRIGHTNESS, self.four)  # red coral
+        self.WEDNESDAY_COLOR = rpi_ws281x.Color(self.zero, self.zero, LED_BRIGHTNESS)  # green
+        self.THURSDAY_COLOR = rpi_ws281x.Color(self.zero, LED_BRIGHTNESS, LED_BRIGHTNESS)  # yellow
+        self.FRIDAY_COLOR = rpi_ws281x.Color(self.one, LED_BRIGHTNESS, self.one)  # pink
+        self.SATURDAY_COLOR = rpi_ws281x.Color(LED_BRIGHTNESS, self.zero, self.zero)  # blue
+
+
     def clear_leds(self):
         strip = self.led_array
         self.pulse_on = False
         for i in range(0, self.led_count, 1):
             strip.setPixelColor(i, 0)
         strip.show()
+
+    def finale(self):
+        strip = self.led_array
+        sleep = 0.35
+        for r in range (27):
+            self.rotation()
+            time.sleep(sleep)
+            sleep = sleep - 0.01
+        for r in range (49):
+            self.rotation()
+            time.sleep(sleep)
+            # if self.zero < 255:
+            #     self.zero += 1
+            #     print(self.zero)
+            # if self.one < 255:
+            #     self.one += 1
+            # if self.four < 255:
+            #     self.four += 1
+            # self.update_colors()
+        for i in range(0, self.led_count, 1):
+            strip.setPixelColor(i, rpi_ws281x.Color(255, 255, 255))
+        strip.show()
+        self.pulse()
+        time.sleep(4)
+
+    def rotation(self):
+        strip = self.led_array
+        self.week_color = self.week_color[1:] + self.week_color[:1]
+        strip.setPixelColor(MONDAY, self.week_color[0])
+        strip.setPixelColor(TUESDAY, self.week_color[1])
+        strip.setPixelColor(WEDNESDAY, self.week_color[2])
+        strip.setPixelColor(THURSDAY, self.week_color[3])
+        strip.setPixelColor(FRIDAY, self.week_color[4])
+        strip.setPixelColor(SATURDAY, self.week_color[5])
+        strip.setPixelColor(SUNDAY, self.week_color[6])
+        strip.show()
+    
 
     def set_dwarves(self, day):
         strip = self.led_array

@@ -53,14 +53,34 @@ def set_led(day):
     # print("hello")
     print("this is from set_led")
 
+def check_printer_list(printer_list):
+    for i in printer_list:
+        if i == printer_state:
+            print(f"Printer State {printer_state} is the same as already printed item {i}")
+            old_print = True
+    return(old_print)
 
 def print_level(day):
     print("this is from print_level")
     printer.print_level(day)
 
+def first_day():
+    updated_json = json_helper.check_json()
+    try:
+        if updated_json is not None:
+            try:
+                seven_dwarves = updated_json
+                current_day = seven_dwarves["gameState"][0]["currentDay"]
+                if current_day == "begin":
+                    printer.print_level("wednesdayLetter")
+                    leds.set_dwarves(current_day)
+            except Exception as err:
+                print(f"problem with first day updated json: {err}")
+    except Exception as err:
+        print(f"problem with first day updated json: {err}")
+
 
 def init():
-
     try:
         os.system("json-server -w db.json -H 192.168.1.28 --nc false>> /var/log/json-server.log 2>&1 &")
     except Exception as err:
@@ -83,7 +103,6 @@ def init():
 
                         printer_list = seven_dwarves["gameState"][3]["alreadyPrinted"]
                         print(f"the already printed list is {printer_list}")
-
                         if game_state == "start":
                             print("inside start")
                             leds.steps = 80
@@ -120,10 +139,7 @@ def init():
                                 # printer.print_level(printer_state)
                                 seven_dwarves["gameState"][2]["printerState"] = "none"
                                 json_helper.update_json(seven_dwarves)
-                                for i in printer_list:
-                                    if i == printer_state:
-                                        print(f"Printer State {printer_state} is the same as already printed item {i}")
-                                        old_print = True
+                                old_print = check_printer_list(printer_list)
                                 
                                 # printer_state 
                                 # already_printed =

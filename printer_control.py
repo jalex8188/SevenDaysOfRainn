@@ -30,6 +30,6 @@ class Printer:
         try:
             printCmd = (f"lp {self.filepath}/images/{printer_item}.png")
             print(printCmd)
-            # os.system(printCmd)
+            os.system(printCmd)
         except Exception as err:
             print("error with printer " + str(err))

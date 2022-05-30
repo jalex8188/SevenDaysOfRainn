@@ -20,7 +20,7 @@ json_helper = Json_helper()
 
 
 def set_all_dwarves(seven_dwarves):
-    # print(seven_dwarves)
+    print(seven_dwarves)
     for i in seven_dwarves["dwarves"]:
         for day in i.keys():
             if day != "id":
@@ -42,6 +42,7 @@ def reset_game(seven_dwarves):
     seven_dwarves["dwarves"][5]["saturday"] = False
     seven_dwarves["dwarves"][6]["sunday"] = False
     seven_dwarves["gameState"][1]["gameState"] = "none"
+    seven_dwarves["gameState"][0]["currentDay"] = "begin"
     print(seven_dwarves)
     json_helper.update_json(seven_dwarves)
 
@@ -90,13 +91,22 @@ def init():
                             leds.set_dwarves(current_day)
                             leds.pulse()
                         if game_state == "movement":
-                            leds.steps = 50
+                            leds.pulse_on = True
+                            leds.steps = 30
+                            # leds.pulse()
                         if game_state == "question":
+                            leds.pulse_on = True
                             leds.steps = 10
+                            # leds.pulse()
                         if game_state == "room":
                             leds.clear_leds()
                             leds.set_dwarves(current_day)
+                            leds.pulse_on = False
+                        if game_state == "finale":
+                            leds.clear_leds()
+                            leds.finale()
                         if game_state == "seven_room":
+                            print("set to seven_room")
                             leds.clear_leds()
                             leds.steps = 80
                             set_all_dwarves(seven_dwarves)

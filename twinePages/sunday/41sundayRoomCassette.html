@@ -1,0 +1,15 @@
+(align:"=><=")[<img src="http://jalexmorrison.com/media/RainnWhite/cassette7.gif" src2="http://sevendaysofrainn.box/media/RainnWhite/cassette7.gif">
+
+{
+(track: 'raw7', 'playwhenpossible')
+}
+
+(link-repeat: "PLAY")[(unless: (track: 'raw7', 'isplaying'))[(track: 'raw7', 'play')]]
+
+(link-repeat: "PAUSE")[(track: 'raw7', 'pause')]
+
+(link-repeat: "RESTART")[(track: 'raw7', 'stop')(track: 'raw7', 'play')]
+
+
+
+[[Exit|Solis Room]] ]

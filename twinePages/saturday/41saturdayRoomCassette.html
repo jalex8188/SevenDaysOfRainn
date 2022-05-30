@@ -1,0 +1,15 @@
+(align:"=><=")[<img src="http://jalexmorrison.com/media/RainnWhite/cassette6.gif" src2="http://sevendaysofrainn.box/media/RainnWhite/cassette6.gif">
+
+{
+(track: 'raw6', 'playwhenpossible')
+}
+
+(link-repeat: "PLAY")[(unless: (track: 'raw6', 'isplaying'))[(track: 'raw6', 'play')]]
+
+(link-repeat: "PAUSE")[(track: 'raw6', 'pause')]
+
+(link-repeat: "RESTART")[(track: 'raw6', 'stop')(track: 'raw6', 'play')]
+
+
+
+[[Exit|Saturni Room]] ]

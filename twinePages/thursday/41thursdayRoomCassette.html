@@ -1,0 +1,15 @@
+(align:"=><=")[<img src="http://jalexmorrison.com/media/RainnWhite/cassette4.gif" src2="http://sevendaysofrainn.box/media/RainnWhite/cassette4.gif">
+
+{
+(track: 'raw4', 'playwhenpossible')
+}
+
+(link-repeat: "PLAY")[(unless: (track: 'raw4', 'isplaying'))[(track: 'raw4', 'play')]]
+
+(link-repeat: "PAUSE")[(track: 'raw4', 'pause')]
+
+(link-repeat: "RESTART")[(track: 'raw4', 'stop')(track: 'raw4', 'play')]
+
+
+
+[[Exit|Iovis Room]] ]

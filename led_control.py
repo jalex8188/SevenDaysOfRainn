@@ -52,8 +52,11 @@ class Leds:
     # led_strip = ws.SK6812_STRIP_RGBW
     led_strip = ws.WS2811_STRIP_GBR
     pulse_on = False
+    pulsing = False
 
     steps = 40
+    
+    week_color = [MONDAY_COLOR, TUESDAY_COLOR, WEDNESDAY_COLOR, THURSDAY_COLOR, FRIDAY_COLOR, SATURDAY_COLOR, SUNDAY_COLOR]
 
     def __init__(self, led_brightness=255, led_brightness_low=40):
         ## This is a Dunder Methods
@@ -175,7 +178,7 @@ class Leds:
 
     def pulse(self, steps = 40):
         print(f"pulse_on is {self.pulse_on}")
-        if self.pulse_on:
+        if self.pulsing:
             print("pulse thread already running")
         else:
             p = threading.Thread(target=self.pulse_thread, args=())
@@ -191,6 +194,7 @@ class Leds:
         print("starting pulse thread")
         strip = self.led_array
         self.pulse_on = True
+        steps = self.steps
         while self.pulse_on:
             steps = self.steps
             for k in range(1, steps):
@@ -199,8 +203,20 @@ class Leds:
                 )
                 strip.setBrightness(pulse_value)
                 self.show_pulse()
+                if not self.pulse_on:
+                    self.pulsing = False
+                    pulse_on = False
+                    return
+                self.pulsing = True
             if self.pulse_on:
+                steps = self.steps
                 for k in range(1, steps):
+                    # steps = self.steps
+                    if not self.pulse_on:
+                        self.pulsing = False
+                        pulse_on = False
+                        return
+                    self.pulsing = True
                     pulse_value = round(
                         ((self.led_brightness * (steps - k)) + (self.led_brightness_low * k)) / steps
                     )

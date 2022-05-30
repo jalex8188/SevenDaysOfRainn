@@ -1,0 +1,15 @@
+(align:"=><=")[<img src="http://jalexmorrison.com/media/RainnWhite/cassette1.gif" src2="http://sevendaysofrainn.box/media/RainnWhite/cassette1.gif">
+
+{
+(track: 'raw1', 'playwhenpossible')
+}
+
+(link-repeat: "PLAY")[(unless: (track: 'raw1', 'isplaying'))[(track: 'raw1', 'play')]]
+
+(link-repeat: "PAUSE")[(track: 'raw1', 'pause')]
+
+(link-repeat: "RESTART")[(track: 'raw1', 'stop')(track: 'raw1', 'play')]
+
+
+
+[[Exit|Lunes Room]] ]

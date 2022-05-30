@@ -1,69 +1,69 @@
 {
-   "posts": [
-      {
-         "id": 1,
-         "title": "json-server",
-         "author": "typicode"
-      }
-   ],
-   "comments": [
-      {
-         "id": 1,
-         "body": "some comment",
-         "postId": 1
-      }
-   ],
-   "profile": {
-      "name": "typicode"
-   },
-   "dwarves": [
-      {
-         "monday": false,
-         "id": 1
-      },
-      {
-         "tuesday": false,
-         "id": 2
-      },
-      {
-         "wednesday": false,
-         "id": 3
-      },
-      {
-         "thursday": false,
-         "id": 4
-      },
-      {
-         "friday": false,
-         "id": 5
-      },
-      {
-         "saturday": false,
-         "id": 6
-      },
-      {
-         "sunday": false,
-         "id": 7
-      }
-   ],
-   "gameState": [
-      {
-         "id": 1,
-         "currentDay": "sunday"
-      },
-      {
-         "id": 2,
-         "gameState": "start"
-      },
-      {
-         "id": 3,
-         "printerState": "none"
-      },
-      {
-         "id": 4,
-         "alreadyPrinted": [
-            "monday"
-         ]
-      }
-   ]
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "dwarves": [
+    {
+      "id": 1,
+      "monday": false
+    },
+    {
+      "id": 2,
+      "tuesday": false
+    },
+    {
+      "id": 3,
+      "wednesday": false
+    },
+    {
+      "id": 4,
+      "thursday": false
+    },
+    {
+      "id": 5,
+      "friday": false
+    },
+    {
+      "id": 6,
+      "saturday": false
+    },
+    {
+      "id": 7,
+      "sunday": true
+    }
+  ],
+  "gameState": [
+    {
+      "id": 1,
+      "currentDay": "Sunday"
+    },
+    {
+      "id": 2,
+      "gameState": "end"
+    },
+    {
+      "id": 3,
+      "printerState": "none"
+    },
+    {
+      "id": 4,
+      "alreadyPrinted": [
+        "sunday"
+      ]
+    }
+  ]
 }

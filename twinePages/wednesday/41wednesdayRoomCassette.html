@@ -1,0 +1,15 @@
+(align:"=><=")[<img src="http://jalexmorrison.com/media/RainnWhite/cassette3.gif" src2="http://sevendaysofrainn.box/media/RainnWhite/cassette3.gif">
+
+{
+(track: 'raw3', 'playwhenpossible')
+}
+
+(link-repeat: "PLAY")[(unless: (track: 'raw3', 'isplaying'))[(track: 'raw3', 'play')]]
+
+(link-repeat: "PAUSE")[(track: 'raw3', 'pause')]
+
+(link-repeat: "RESTART")[(track: 'raw3', 'stop')(track: 'raw3', 'play')]
+
+
+
+[[Exit|Mercurii Room]] ]

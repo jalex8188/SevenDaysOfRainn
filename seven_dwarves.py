@@ -62,7 +62,7 @@ def print_level(day):
 def init():
 
     try:
-        os.system("json-server --nc -w db.json -H 192.168.0.28 >> /var/log/json-server.log 2>&1 &")
+        os.system("json-server -w db.json -H 192.168.1.28 --nc false>> /var/log/json-server.log 2>&1 &")
     except Exception as err:
         print(f"problem starting json-server:{err}")
     try:

@@ -53,7 +53,7 @@ def set_led(day):
     # print("hello")
     print("this is from set_led")
 
-def check_printer_list(printer_list):
+def check_printer_list(printer_list, printer_state):
     old_print = False
     for i in printer_list:
         if i == printer_state:
@@ -139,11 +139,12 @@ def init():
                             reset_game(seven_dwarves)
                         if printer_state != "none":
                             old_print = False
+                            print(f"printer state is {printer_state}")
                             print(f"trying old print state: old print is {old_print}")
                             try:
                                 # printer.print_level(printer_state)
                                 seven_dwarves["gameState"][2]["printerState"] = "none"
-                                old_print = check_printer_list(printer_list)
+                                old_print = check_printer_list(printer_list, printer_state)
                                 if not old_print:
                                     seven_dwarves["gameState"][3]["alreadyPrinted"].append(printer_state)
                                     print(f"I'm printing {printer_state}")

@@ -54,6 +54,7 @@ def set_led(day):
     print("this is from set_led")
 
 def check_printer_list(printer_list):
+    old_print = False
     for i in printer_list:
         if i == printer_state:
             print(f"Printer State {printer_state} is the same as already printed item {i}")

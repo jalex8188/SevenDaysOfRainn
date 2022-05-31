@@ -65,6 +65,7 @@ def print_level(day):
     printer.print_level(day)
 
 def first_day():
+    print("FIRST DAY")
     updated_json = json_helper.check_json()
     try:
         if updated_json is not None:
@@ -85,6 +86,7 @@ def init():
         os.system("json-server -w db.json -H 192.168.1.28 --nc false>> /var/log/json-server.log 2>&1 &")
     except Exception as err:
         print(f"problem starting json-server:{err}")
+    first_day()
     try:
         while True:
             updated_json = json_helper.check_json()

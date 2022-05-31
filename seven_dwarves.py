@@ -67,6 +67,7 @@ def print_level(day):
 def first_day():
     print("FIRST DAY")
     updated_json = json_helper.check_json()
+    print("FIRST DAY OF SCHOOL")
     try:
         if updated_json is not None:
             try:

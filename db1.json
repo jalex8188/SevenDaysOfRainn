@@ -62,6 +62,8 @@
       {
          "id": 4,
          "alreadyPrinted": [
+            "finalLetter",
+            "mondayLetter"
          ]
       }
    ]

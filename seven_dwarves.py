@@ -142,7 +142,6 @@ def init():
                             try:
                                 # printer.print_level(printer_state)
                                 seven_dwarves["gameState"][2]["printerState"] = "none"
-                                json_helper.update_json(seven_dwarves)
                                 old_print = check_printer_list(printer_list)
                                 
                                 # printer_state 
@@ -151,7 +150,7 @@ def init():
                                     seven_dwarves["gameState"][3]["alreadyPrinted"].append(printer_state)
                                     print(f"I'm printing {printer_state}")
                                     printer.print_level(printer_state)
-                                    json_helper.update_json(seven_dwarves)
+                                json_helper.update_json(seven_dwarves)
                             except Exception as err:
                                 print(f"problem with the printer state {err}")
 

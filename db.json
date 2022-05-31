@@ -49,7 +49,7 @@
    "gameState": [
       {
          "id": 1,
-         "currentDay": "monday"
+         "currentDay": "begin"
       },
       {
          "id": 2,
@@ -62,8 +62,6 @@
       {
          "id": 4,
          "alreadyPrinted": [
-            "tuesday",
-            "monday"
          ]
       }
    ]

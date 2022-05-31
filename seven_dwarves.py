@@ -139,13 +139,11 @@ def init():
                             reset_game(seven_dwarves)
                         if printer_state != "none":
                             old_print = False
+                            print(f"trying old print state: old print is {old_print}")
                             try:
                                 # printer.print_level(printer_state)
                                 seven_dwarves["gameState"][2]["printerState"] = "none"
                                 old_print = check_printer_list(printer_list)
-                                
-                                # printer_state 
-                                # already_printed =
                                 if not old_print:
                                     seven_dwarves["gameState"][3]["alreadyPrinted"].append(printer_state)
                                     print(f"I'm printing {printer_state}")

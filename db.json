@@ -19,7 +19,7 @@
    "dwarves": [
       {
          "id": 1,
-         "monday": false
+         "monday": true
       },
       {
          "id": 2,
@@ -49,19 +49,20 @@
    "gameState": [
       {
          "id": 1,
-         "currentDay": "begin"
+         "currentDay": "Monday"
       },
       {
          "id": 2,
-         "gameState": "start"
+         "gameState": "movement"
       },
       {
          "id": 3,
-         "printerState": "none"
+         "printerState": "tuesday"
       },
       {
          "id": 4,
          "alreadyPrinted": [
+            "optOut"
          ]
       }
    ]

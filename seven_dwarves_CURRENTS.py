@@ -18,7 +18,6 @@ printer = Printer()
 json_helper = Json_helper()
 
 
-
 def set_all_dwarves(seven_dwarves):
     print(seven_dwarves)
     for i in seven_dwarves["dwarves"]:
@@ -31,6 +30,7 @@ def set_all_dwarves(seven_dwarves):
     time.sleep(1)
     # leds.pulse()
 
+
 def reset_game(seven_dwarves):
     print("resetting game")
     seven_dwarves["gameState"][3]["alreadyPrinted"] = []
@@ -42,7 +42,7 @@ def reset_game(seven_dwarves):
     seven_dwarves["dwarves"][5]["saturday"] = False
     seven_dwarves["dwarves"][6]["sunday"] = False
     seven_dwarves["gameState"][1]["gameState"] = "none"
-    seven_dwarves["gameState"][0]["currentDay"] = "begin"
+    seven_dwarves["gameState"][0]["currentDay"] = "begin_CURRENTS"
     print(seven_dwarves)
     json_helper.update_json(seven_dwarves)
 
@@ -53,17 +53,22 @@ def set_led(day):
     # print("hello")
     print("this is from set_led")
 
+
 def check_printer_list(printer_list):
     old_print = False
     for i in printer_list:
         if i == printer_state:
-            print(f"Printer State {printer_state} is the same as already printed item {i}")
+            print(
+                f"Printer State {printer_state} is the same as already printed item {i}"
+            )
             old_print = True
-    return(old_print)
+    return old_print
+
 
 def print_level(day):
     print("this is from print_level")
     printer.print_level(day)
+
 
 def first_day():
     print("FIRST DAY")
@@ -85,7 +90,9 @@ def first_day():
 
 def init():
     try:
-        os.system("json-server -w db.json -H 192.168.1.28 --nc false>> /var/log/json-server.log 2>&1 &")
+        os.system(
+            "json-server -w db.json -H 192.168.1.28 --nc false>> /var/log/json-server.log 2>&1 &"
+        )
     except Exception as err:
         print(f"problem starting json-server:{err}")
     first_day()
@@ -144,13 +151,15 @@ def init():
                                 # printer.print_level(printer_state)
                                 seven_dwarves["gameState"][2]["printerState"] = "none"
                                 old_print = check_printer_list(printer_list)
-                                
-                                # printer_state 
+
+                                # printer_state
                                 # already_printed =
-                                if not old_print:
-                                    seven_dwarves["gameState"][3]["alreadyPrinted"].append(printer_state)
-                                    print(f"I'm printing {printer_state}")
-                                    printer.print_level(printer_state)
+                                # if not old_print:
+                                #     seven_dwarves["gameState"][3][
+                                #         "alreadyPrinted"
+                                #     ].append(printer_state)
+                                #     print(f"I'm printing {printer_state}")
+                                #     printer.print_level(printer_state)
                                 json_helper.update_json(seven_dwarves)
                             except Exception as err:
                                 print(f"problem with the printer state {err}")
